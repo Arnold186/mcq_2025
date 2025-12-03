@@ -7,7 +7,6 @@ const StudentLogin: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen bg-slate-100 px-4 py-10 text-slate-900 md:py-16">
       <div className="mx-auto grid w-full max-w-5xl min-h-[540px] overflow-hidden rounded-[32px] bg-white shadow-[0_20px_60px_rgba(15,47,33,0.12)] md:grid-cols-2">
         <div className="flex flex-col justify-center gap-10 px-6 py-10 md:px-14 md:py-16">
           <div>
@@ -66,16 +65,10 @@ const StudentLogin: React.FC = () => {
 
         <div
           aria-hidden="true"
-          className="relative hidden min-h-[540px] md:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 20%, #55f28b 0%, rgba(85, 242, 139, 0) 50%), radial-gradient(circle at 80% 30%, #08b853 0%, rgba(8, 184, 83, 0) 45%), linear-gradient(180deg, #03a045 0%, #05c658 100%)",
-          }}
-        >
-          <div className="absolute inset-12 bg-[url('/studentlogin.png')] bg-contain bg-bottom bg-no-repeat" />
+          className="relative hidden min-h-[540px] md:block">
+          <div className="absolute inset-15 bg-[url('/studentlogin.png')] bg-contain bg-bottom bg-no-repeat" />
         </div>
       </div>
-    </section>
   );
 };
 
