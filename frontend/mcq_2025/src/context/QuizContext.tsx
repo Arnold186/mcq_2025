@@ -1,45 +1,38 @@
-import React, { createContext, useContext, useState } from "react";
-import type { Question } from "../types/Question";
-import type { Answer } from "../types/Attempt";
+import React, { createContext, useContext, useMemo, useState } from "react";
 
-interface QuizContextType {
-  questions: Question[];
-  setQuestions: (q: Question[]) => void;
-  answers: Answer[];
-  setAnswer: (questionId: string, selected: number | null) => void;
-  currentIndex: number;
-  setCurrentIndex: (i: number) => void;
-  learnerReg: string;
-  setLearnerReg: (r: string) => void;
+type AnswerMap = Record<string, string>;
+
+export interface QuizContextValue {
+  currentQuestion: number;
+  setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
+  answers: AnswerMap;
+  setAnswers: React.Dispatch<React.SetStateAction<AnswerMap>>;
 }
 
-const QuizContext = createContext<QuizContextType | undefined>(undefined);
+const QuizContext = createContext<QuizContextValue | undefined>(undefined);
 
 export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [answers, setAnswers] = useState<Answer[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [learnerReg, setLearnerReg] = useState("");
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<AnswerMap>({});
 
-  const setAnswer = (questionId: string, selected: number | null) => {
-    setAnswers(prev => {
-      const found = prev.find(a => a.questionId === questionId);
-      if (found) {
-        return prev.map(a => a.questionId === questionId ? { ...a, selected } : a);
-      }
-      return [...prev, { questionId, selected }];
-    });
-  };
-
-  return (
-    <QuizContext.Provider value={{ questions, setQuestions, answers, setAnswer, currentIndex, setCurrentIndex, learnerReg, setLearnerReg }}>
-      {children}
-    </QuizContext.Provider>
+  const value = useMemo(
+    () => ({
+      currentQuestion,
+      setCurrentQuestion,
+      answers,
+      setAnswers,
+    }),
+    [currentQuestion, answers],
   );
+
+  return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
 };
 
-export const useQuiz = () => {
-  const ctx = useContext(QuizContext);
-  if (!ctx) throw new Error("useQuiz must be used inside QuizProvider");
-  return ctx;
+export const useQuiz = (): QuizContextValue => {
+  const context = useContext(QuizContext);
+  if (!context) {
+    throw new Error("useQuiz must be used inside a QuizProvider");
+  }
+  return context;
 };
+
