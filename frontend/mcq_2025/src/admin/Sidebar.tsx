@@ -12,7 +12,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPath }) => {
     { path: "/admin/dashboard", label: "Dashboard", icon: "📊" },
     { path: "/admin/assignments", label: "Assignments", icon: "📋" },
     { path: "/admin/students", label: "Students", icon: "👥" },
-    { path: "/admin/help", label: "Help", icon: "❓" },
+    // { path: "/admin/help", label: "Help", icon: "❓" },
   ];
 
   return (
@@ -25,7 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPath }) => {
           </div>
           <div>
             <div className="font-bold text-slate-900">Dashboard</div>
-            <div className="text-xs text-slate-500">v.01</div>
+            <div className="text-xs text-slate-500">MCQ</div>
           </div>
         </div>
       </div>
@@ -59,10 +59,10 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPath }) => {
       <div className="p-4 border-t border-slate-200">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-slate-300 flex items-center justify-center">
-            <span className="text-slate-600 text-sm font-semibold">E</span>
+            <span className="text-slate-600 text-sm font-semibold">A</span>
           </div>
           <div className="flex-1">
-            <div className="font-semibold text-slate-900 text-sm">Evano</div>
+            <div className="font-semibold text-slate-900 text-sm">Arnold</div>
             <div className="text-xs text-slate-500">lecturer</div>
           </div>
           <span className="text-slate-400">▼</span>

@@ -1,0 +1,13 @@
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Set a width */
+}
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none; /* Remove arrows */
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #06B652; /* Green color */
+  border-radius: 4px; /* Soft edges */
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Or light gray if needed */
+}

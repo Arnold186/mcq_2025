@@ -88,10 +88,10 @@ const AdminLogin: React.FC = () => {
         <div
           aria-hidden="true"
           className="relative hidden min-h-[540px] md:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 20%, #55f28b 0%, rgba(85, 242, 139, 0) 50%), radial-gradient(circle at 80% 30%, #08b853 0%, rgba(8, 184, 83, 0) 45%), linear-gradient(180deg, #03a045 0%, #05c658 100%)",
-          }}
+          // style={{
+          //   backgroundImage:
+          //     "radial-gradient(circle at 20% 20%, #55f28b 0%, rgba(85, 242, 139, 0) 50%), radial-gradient(circle at 80% 30%, #08b853 0%, rgba(8, 184, 83, 0) 45%), linear-gradient(180deg, #03a045 0%, #05c658 100%)",
+          // }}
         >
           <div className="absolute inset-12 bg-[url('/studentlogin.png')] bg-contain bg-bottom bg-no-repeat" />
         </div>
