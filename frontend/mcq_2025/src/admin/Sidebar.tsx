@@ -1,5 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { MdDashboard, MdAssignment } from "react-icons/md";
+import { PiStudentBold } from "react-icons/pi";
+
 
 interface SidebarProps {
   currentPath: string;
@@ -9,14 +12,14 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPath }) => {
   const navigate = useNavigate();
 
   const menuItems = [
-    { path: "/admin/dashboard", label: "Dashboard", icon: "📊" },
-    { path: "/admin/assignments", label: "Assignments", icon: "📋" },
-    { path: "/admin/students", label: "Students", icon: "👥" },
+    { path: "/admin/dashboard", label: "Dashboard", icon: <MdDashboard /> },
+    { path: "/admin/assignments", label: "Assignments", icon: <MdAssignment /> },
+    { path: "/admin/students", label: "Students", icon: <PiStudentBold /> },
     // { path: "/admin/help", label: "Help", icon: "❓" },
   ];
 
   return (
-    <div className="w-64 min-h-screen bg-white border-r border-slate-200 flex flex-col">
+    <div className="w-64 h-screen sticky top-0 bg-white border-r border-slate-200 flex flex-col overflow-y-auto">
       {/* Header */}
       <div className="p-6 border-b border-slate-200">
         <div className="flex items-center gap-3">
@@ -39,11 +42,10 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPath }) => {
               <li key={item.path}>
                 <Link
                   to={item.path}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
-                    isActive
-                      ? "bg-emerald-500 text-white"
-                      : "text-slate-700 hover:bg-slate-100"
-                  }`}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${isActive
+                    ? "bg-emerald-500 text-white"
+                    : "text-slate-700 hover:bg-slate-100"
+                    }`}
                 >
                   <span className="text-lg">{item.icon}</span>
                   <span className="font-medium">{item.label}</span>

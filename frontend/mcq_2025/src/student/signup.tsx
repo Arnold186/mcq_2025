@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const StudentSignup: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,8 +20,17 @@ const StudentSignup: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Handle signup logic here
-    console.log("Signup data:", formData);
+    // Simulate Signup and Login
+    const studentProfile = {
+      name: formData.name,
+      registrationNumber: formData.registrationNumber,
+      email: formData.email,
+    };
+    localStorage.setItem("studentProfile", JSON.stringify(studentProfile));
+    console.log("Student Profile saved:", studentProfile);
+
+    // Redirect to dashboard (or login, but for smoother flow let's go to dashboard/quiz)
+    navigate("/student/dashboard"); // Assuming there's a dashboard, or we can go to quiz if ready.
   };
 
   return (

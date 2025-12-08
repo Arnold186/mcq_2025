@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+interface SubmissionState {
+  obtainedMarks: number;
+  totalMarks: number;
+  totalQuestions: number;
+}
 
 const SubmissionConfirmation: React.FC = () => {
-  const registrationNumber = "202050014";
-  const score = "15/20";
+  const location = useLocation();
+  const state = location.state as SubmissionState;
+
+  const [registrationNumber, setRegistrationNumber] = useState("Unknown");
+  const [scoreDisplay, setScoreDisplay] = useState("0/0");
+
+  useEffect(() => {
+    // Get Student Profile
+    const profileStr = localStorage.getItem("studentProfile");
+    if (profileStr) {
+      const profile = JSON.parse(profileStr);
+      setRegistrationNumber(profile.registrationNumber || "Unknown");
+    }
+
+    // Get Marks
+    if (state) {
+      setScoreDisplay(`${state.obtainedMarks}/${state.totalMarks}`);
+    } else {
+      // Fallback or dev mode
+      setScoreDisplay("0/0");
+    }
+  }, [state]);
+
   const submissionTime = new Date().toLocaleString("en-US", {
     month: "2-digit",
     day: "2-digit",
@@ -53,7 +81,7 @@ const SubmissionConfirmation: React.FC = () => {
               </div>
               <div>
                 <p className="mb-2 text-sm text-slate-600">Score</p>
-                <p className="text-lg font-bold text-slate-900">{score}</p>
+                <p className="text-lg font-bold text-slate-900">{scoreDisplay}</p>
               </div>
             </div>
 

@@ -13,13 +13,13 @@ const Dashboard: React.FC = () => {
         <div className="grid grid-cols-2 gap-6 max-w-4xl">
           <Link
             to="/admin/assignments"
-            className="rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 p-12 text-center shadow-lg hover:shadow-xl transition"
+            className="rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-500 p-12 text-center shadow-lg hover:shadow-xl transition"
           >
             <div className="text-white text-2xl font-bold">Course 1</div>
           </Link>
           <Link
             to="/admin/assignments"
-            className="rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 p-12 text-center shadow-lg hover:shadow-xl transition"
+            className="rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-500 p-12 text-center shadow-lg hover:shadow-xl transition"
           >
             <div className="text-white text-2xl font-bold">Course 2</div>
           </Link>

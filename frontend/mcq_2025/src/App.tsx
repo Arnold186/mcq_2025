@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import StudentLogin from "./student/login";
 import StudentSignup from "./student/signup";
 import StudentQuiz from "./student/quiz";
+import StudentDashboard from "./student/Dashboard";
 import SubmissionConfirmation from "./student/submission";
 import AdminLogin from "./admin/login";
 import AdminDashboard from "./admin/Dashboard";
@@ -17,6 +18,7 @@ function App() {
       <Route path="/" element={<Navigate to="/student/login" replace />} />
       <Route path="/student/login" element={<StudentLogin />} />
       <Route path="/student/signup" element={<StudentSignup />} />
+      <Route path="/student/dashboard" element={<StudentDashboard />} />
       <Route path="/student/quiz" element={<StudentQuiz />} />
       <Route path="/student/submission" element={<SubmissionConfirmation />} />
       <Route path="/admin/login" element={<AdminLogin />} />
