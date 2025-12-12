@@ -1,8 +1,9 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import Student from "../models/Student";
-import Admin from "../models/Admin";
+import { Student } from "../entities/Student";
+import { Admin } from "../entities/Admin";
+import { AppDataSource } from "../config/data-source";
 
 const router = express.Router();
 
@@ -18,9 +19,10 @@ const generateToken = (id: string) => {
 // @access  Public
 router.post("/student/signup", async (req, res) => {
     const { name, email, registrationNumber, password } = req.body;
+    const studentRepo = AppDataSource.getRepository(Student);
 
     try {
-        const studentExists = await Student.findOne({ email });
+        const studentExists = await studentRepo.findOneBy({ email });
         if (studentExists) {
             res.status(400).json({ message: "Student already exists" });
             return;
@@ -29,12 +31,14 @@ router.post("/student/signup", async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const student = await Student.create({
+        const student = studentRepo.create({
             name,
             email,
             registrationNumber,
             password: hashedPassword,
         });
+
+        await studentRepo.save(student);
 
         if (student) {
             res.status(201).json({
@@ -57,9 +61,10 @@ router.post("/student/signup", async (req, res) => {
 // @access  Public
 router.post("/student/login", async (req, res) => {
     const { email, password } = req.body;
+    const studentRepo = AppDataSource.getRepository(Student);
 
     try {
-        const student = await Student.findOne({ email });
+        const student = await studentRepo.findOneBy({ email });
 
         if (student && (await bcrypt.compare(password, student.password))) {
             res.json({
@@ -83,9 +88,10 @@ router.post("/student/login", async (req, res) => {
 // @access  Public
 router.post("/admin/login", async (req, res) => {
     const { username, password } = req.body;
+    const adminRepo = AppDataSource.getRepository(Admin);
 
     try {
-        const admin = await Admin.findOne({ username });
+        const admin = await adminRepo.findOneBy({ username });
 
         if (admin && (await bcrypt.compare(password, admin.password))) {
             res.json({
